@@ -10,14 +10,10 @@ searchGIF();
 
 // ============================= functions =============================
 
-function searchGIF() {
-    fetch(`${fetchURL}?api_key=${API_KEY}&s=${searchTerm}`, {mode: 'cors'})
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(response) {
-        img.src = response.data.images.original.url;
-    });
+async function searchGIF() {
+    const response = await fetch(`${fetchURL}?api_key=${API_KEY}&s=${searchTerm}`, {mode: 'cors'});
+    const reponseJSON = await response.json();
+    img.src = reponseJSON.data.images.original.url;
 }
 
 btn.addEventListener("click", () => {
